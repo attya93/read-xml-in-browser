@@ -20,7 +20,7 @@ export class ReadComponent implements OnInit {
 
   ngOnInit(): void {
     //this.loadXML();
-    introJs().start();
+    introJs().addHints();
   }
   uploadFile(event: any) {
     let fileReader = new FileReader(); //inital file to read 
