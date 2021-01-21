@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import xml2js from 'xml2js';
 import * as introJs from 'intro.js';
 @Component({
@@ -7,7 +7,7 @@ import * as introJs from 'intro.js';
   templateUrl: './read.component.html',
   styleUrls: ['./read.component.css']
 })
-export class ReadComponent implements OnInit {
+export class ReadComponent implements OnInit, OnDestroy {
   title: string = 'read-xml'; //this is the title of project
   public xmlItems: any = null; // hold data extracted from xml in [{key:value}]
   fileToUpload: File = null;// hold file uploaded from user
@@ -20,7 +20,13 @@ export class ReadComponent implements OnInit {
 
   ngOnInit(): void {
     //this.loadXML();
-    introJs().addHints();
+
+    if (!localStorage.getItem("intro")) {
+      introJs().setOptions({
+        showBullets: false
+      }).start();
+      localStorage.setItem("intro", '1')
+    }
   }
   uploadFile(event: any) {
     let fileReader = new FileReader(); //inital file to read 
@@ -62,5 +68,7 @@ export class ReadComponent implements OnInit {
     });
     arr.length > 0 ? (this.xmlItems = arr) : (this.xmlItems = null)
   }
-  //coment
+  ngOnDestroy() {
+
+  }
 }

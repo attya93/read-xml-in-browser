@@ -1,0 +1,8 @@
+.hight {
+  min-height: 100vh !important;
+}
+
+.view {
+  width: 100vw;
+  height: 100vh;
+}

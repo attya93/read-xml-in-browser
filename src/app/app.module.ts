@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReadComponent } from './components/read/read.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { Page404Component } from './components/page404/page404.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    ReadComponent
+    ReadComponent,
+    Page404Component
   ],
   imports: [
     BrowserModule,
@@ -21,4 +23,8 @@ import { HttpClientModule } from '@angular/common/http'
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule implements OnInit {
+  ngOnInit() {
+    localStorage.removeItem("intro")
+  }
+}
