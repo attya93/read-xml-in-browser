@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row">
-    <input type="file" class="form-control" (change)="uploadFile($event)" />
+    <input type="file" class="form-control " (change)="uploadFile($event)" data-step="1"
+      data-intro="select file with .xml" />
   </div>
   <div class="row">
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover" data-step="2" data-intro="data after extract to json">
       <tr>
         <th>Id</th>
         <th>Name</th>

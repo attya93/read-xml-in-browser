@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import xml2js from 'xml2js';
+import * as introJs from 'intro.js';
 @Component({
   selector: 'app-read',
   templateUrl: './read.component.html',
@@ -19,14 +20,15 @@ export class ReadComponent implements OnInit {
 
   ngOnInit(): void {
     //this.loadXML();
+    introJs().start();
   }
   uploadFile(event: any) {
     let fileReader = new FileReader(); //inital file to read 
     fileReader.onload = (e) => {
-      //console.log(fileReader.result); // hold binary data and convert it o real data
+      console.log(fileReader.result); // hold binary data and convert it o real data
       this.parseXML(fileReader)
     }
-    //fileReader.readAsText(event.target.files[0]);
+    fileReader.readAsText(event.target.files[0]);
 
   }
   //if you read from server
@@ -43,6 +45,7 @@ export class ReadComponent implements OnInit {
     })
   }
   parseXML(data) {
+    console.log(data.result)
     var k: string | number, // hold key of parse to object
       arr = []; // hold all tag after convert
     this.parser.parseString(data.result, (err, result) => {
